@@ -1,0 +1,9 @@
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\bin\Debug\RickMortyAlarm.exe.config
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\bin\Debug\RickMortyAlarm.exe
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\bin\Debug\RickMortyAlarm.pdb
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\obj\Debug\RickMortyAlarm.csprojResolveAssemblyReference.cache
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\obj\Debug\RickMortyAlarm.Form1.resources
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\obj\Debug\RickMortyAlarm.Properties.Resources.resources
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\obj\Debug\RickMortyAlarm.csproj.GenerateResource.Cache
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\obj\Debug\RickMortyAlarm.exe
+c:\users\michael\documents\visual studio 2015\Projects\RickMortyAlarm\RickMortyAlarm\obj\Debug\RickMortyAlarm.pdb
