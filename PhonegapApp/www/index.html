@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+        <!-- Good default declaration:
+* gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+* https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+* Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+* Enable inline JS: add 'unsafe-inline' to default-src
+* Enable eval(): add 'unsafe-eval' to default-src
+* Create your own at http://cspisawesome.com
+-->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/date.js" type="text/javascript"></script>
+
+        <title>Rick and Morty Alarm</title> 
+        <style>
+            input{
+                font-size: 70px;
+                width:20%;
+                padding-right:2%;
+                padding-left:2%;
+                top:249px;    
+                text-align:center;
+                border-style: none;
+
+            }
+            #button-wrap{
+                width:20%;
+                display:inline;
+                float:right;
+
+            }
+
+            #input-wrap{
+                width:70%;
+                display:inline;
+
+                margin-left:5%;
+
+
+            }
+            
+            #watermark{
+                color:white;
+                position:absolute;
+                bottom:1px;
+                
+            }
+
+            #bottom-wrap{
+
+                height:25%;
+                width:100%;
+                position:absolute;
+                bottom:20px;
+            }
+
+            #button{
+                width:65%
+
+            }
+
+
+        </style>
+        <script type="text/javascript">
+            Date.prototype.addHours = function(h) {    
+                this.setTime(this.getTime() + (h*60*60*1000)); 
+                return this;   
+            }
+            $( document ).ready(function() {
+                $('input').on('click focusin', function() {
+                    this.value = '';
+                });
+
+                $('#button').click(function(){
+                    var hours = $('#hours').val();
+                    var minutes = $('#minutes').val();
+                    var seconds = $('#seconds').val();
+                    var currentTime = new Date();
+                    var targetTime = new Date();
+                    targetTime.addHours(parseInt(hours));
+                    targetTime.addMinutes(parseInt(minutes));
+                    targetTime.addSeconds(parseInt(seconds));
+
+                    var timeDiff = Math.abs(targetTime.getTime() -  currentTime.getTime());
+
+ 
+
+
+                    $('#hours').val(Math.floor(timeDiff/ 3600000));
+                    $('#minutes').val(Math.floor((timeDiff % 3600000) / 60000 ));
+                    $('#seconds').val(Math.floor(((timeDiff % 3600000) % 60000)/1000));
+                    
+                    var timer = setInterval(function () {
+                        timeDiff = timeDiff - 1000;
+
+                    $('#hours').val(Math.floor(timeDiff/ 3600000));
+                    $('#minutes').val(Math.floor((timeDiff % 3600000) / 60000 ));
+                    $('#seconds').val(Math.floor(((timeDiff % 3600000) % 60000)/1000));
+                        if(timeDiff <= 0)
+                            {
+                                var audio = new Audio('img/rickFadeIn.mp3');
+                                audio.play();
+                                clearInterval(timer);
+                                
+                            }
+                },1000);
+            });
+ });
+        </script>
+    </head>
+
+    <body style="background-image: url('img/PhoneApp2.png'); background-size:100%;
+                 ">
+        <div class="app">
+            <div id="bottom-wrap">
+
+                <div id="input-wrap">
+                    <input type="number" value="00" id="hours" >
+                    <input type="number" value="00" id="minutes">
+                    <input type="number" value="00" id="seconds">
+                </div>
+                <div id="button-wrap">  <img id="button" src="img/button.png" /></div>
+
+            </div>
+            <div id="watermark">Youtube.com / Useless Duck Company</div>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <script type="text/javascript">
+            //  app.initialize();
+        </script>
+    </body>
+
+</html>
